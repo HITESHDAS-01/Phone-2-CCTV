@@ -62,6 +62,11 @@ function generateCertificate() {
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Redirect root to dashboard
+app.get('/', (req, res) => {
+    res.redirect('/dashboard.html');
+});
+
 // API: Get QR code data
 app.get('/api/qr', async (req, res) => {
     let url;
