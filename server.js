@@ -9,7 +9,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const IS_PRODUCTION = !!(process.env.RAILWAY_STATIC_URL || process.env.RENDER);
+const IS_PRODUCTION = !!(process.env.RAILWAY_PUBLIC_DOMAIN || process.env.RENDER || process.env.HEROKU_APP_NAME);
 
 // Get local IP address
 function getLocalIP() {
@@ -185,7 +185,7 @@ server.listen(PORT, '0.0.0.0', () => {
     console.log('========================================');
     if (IS_PRODUCTION) {
         console.log('  Mode: PRODUCTION');
-        console.log(`  URL: https://${process.env.RAILWAY_STATIC_URL || 'your-app.up.railway.app'}`);
+        console.log(`  URL: https://${process.env.RAILWAY_PUBLIC_DOMAIN || 'your-app.up.railway.app'}`);
     } else {
         console.log('  Mode: LOCAL');
         console.log(`  Dashboard: https://${localIP}:${PORT}/dashboard.html`);
