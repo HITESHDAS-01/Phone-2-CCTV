@@ -9,7 +9,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const IS_PRODUCTION = !!(process.env.RAILWAY_PUBLIC_DOMAIN || process.env.RENDER || process.env.HEROKU_APP_NAME);
+const IS_PRODUCTION = !!(process.env.RAILWAY_ENVIRONMENT_NAME || process.env.RENDER || process.env.HEROKU_APP_NAME);
 
 // Get local IP address
 function getLocalIP() {
