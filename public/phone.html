@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Phone CCTV Camera</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="phone-body">
+    <div id="phone-app">
+        <!-- Status Bar -->
+        <div id="status-bar">
+            <span id="status-dot" class="dot offline"></span>
+            <span id="status-text">Connecting...</span>
+        </div>
+
+        <!-- Camera Preview -->
+        <div id="preview-container">
+            <video id="local-preview" autoplay playsinline muted></video>
+            <div id="camera-label">CAM</div>
+        </div>
+
+        <!-- Controls -->
+        <div id="phone-controls">
+            <div id="camera-name-group">
+                <label for="camera-name">Camera Name:</label>
+                <input type="text" id="camera-name" placeholder="e.g. Living Room" maxlength="20">
+            </div>
+
+            <button id="btn-start" class="btn btn-primary">Start Camera</button>
+            <button id="btn-stop" class="btn btn-danger" style="display:none;">Stop Camera</button>
+            <button id="btn-switch" class="btn btn-secondary" style="display:none;">Switch Camera</button>
+        </div>
+
+        <!-- Info -->
+        <div id="phone-info">
+            <p id="connection-info"></p>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/phone.js"></script>
+</body>
+</html>

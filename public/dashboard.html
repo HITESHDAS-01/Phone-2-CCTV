@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dashboard-body">
+    <div id="dashboard-app">
+        <!-- Header -->
+        <header id="dashboard-header">
+            <h1>Phone CCTV Dashboard</h1>
+            <div id="header-controls">
+                <span id="camera-count">0 Cameras</span>
+                <button id="btn-show-qr" class="btn btn-primary">Show QR Code</button>
+                <button id="btn-record-all" class="btn btn-danger" style="display:none;">Record All</button>
+            </div>
+        </header>
+
+        <!-- QR Code Modal -->
+        <div id="qr-modal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Scan with Phone</h2>
+                <img id="qr-image" src="" alt="QR Code">
+                <p id="qr-url"></p>
+                <p class="hint">Open phone camera and scan this QR code</p>
+            </div>
+        </div>
+
+        <!-- Camera Grid -->
+        <div id="camera-grid">
+            <div class="empty-state" id="empty-state">
+                <div class="empty-icon">📷</div>
+                <h2>No Cameras Connected</h2>
+                <p>Click "Show QR Code" and scan with your phone to add a camera</p>
+            </div>
+        </div>
+
+        <!-- Playback Panel -->
+        <div id="playback-panel" style="display:none;">
+            <div class="playback-header">
+                <h2>Recordings</h2>
+                <button id="btn-close-playback" class="btn btn-secondary">Close</button>
+            </div>
+            <div id="recordings-list"></div>
+            <video id="playback-video" controls style="display:none;"></video>
+        </div>
+
+        <!-- Footer -->
+        <footer id="dashboard-footer">
+            <button id="btn-playback" class="btn btn-secondary">View Recordings</button>
+        </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

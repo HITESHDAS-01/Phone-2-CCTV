@@ -1,0 +1,356 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #0a0a0a;
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn:hover { opacity: 0.9; transform: scale(1.02); }
+.btn:active { transform: scale(0.98); }
+
+.btn-primary { background: #2563eb; color: #fff; }
+.btn-secondary { background: #374151; color: #fff; }
+.btn-danger { background: #dc2626; color: #fff; }
+.btn-small { padding: 6px 12px; font-size: 12px; }
+
+.btn-record.recording { background: #dc2626; animation: pulse 1s infinite; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Status Dot */
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.dot.online { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.dot.offline { background: #6b7280; }
+.dot.connecting { background: #f59e0b; animation: pulse 1s infinite; }
+.dot.error { background: #dc2626; }
+
+/* ===================== */
+/* Phone Styles           */
+/* ===================== */
+.phone-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+#phone-app {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+#status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    background: #1e293b;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+#preview-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+#local-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#camera-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #22c55e;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#phone-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+#camera-name-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#camera-name-group label {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+#camera-name {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #374151;
+    background: #1e293b;
+    color: #fff;
+    font-size: 14px;
+}
+
+#phone-info {
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+/* ===================== */
+/* Dashboard Styles       */
+/* ===================== */
+.dashboard-body {
+    min-height: 100vh;
+    background: #0a0a0a;
+}
+
+#dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: #111827;
+    border-bottom: 1px solid #1f2937;
+}
+
+#dashboard-header h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#header-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#camera-count {
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+/* Camera Grid */
+#camera-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    padding: 24px;
+    min-height: calc(100vh - 140px);
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-icon { font-size: 64px; margin-bottom: 16px; }
+.empty-state h2 { font-size: 24px; margin-bottom: 8px; }
+
+/* Camera Card */
+.camera-card {
+    background: #111827;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1f2937;
+    transition: transform 0.2s;
+}
+
+.camera-card:hover { transform: translateY(-2px); }
+
+.camera-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: #1f2937;
+}
+
+.camera-name { font-weight: 600; font-size: 14px; }
+
+.camera-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.camera-status.online { background: #052e16; color: #22c55e; }
+.camera-status.offline { background: #451a03; color: #f59e0b; }
+
+.camera-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: #000;
+    display: block;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 8px;
+    padding: 10px 16px;
+}
+
+/* QR Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1f2937;
+    padding: 32px;
+    border-radius: 16px;
+    text-align: center;
+    max-width: 360px;
+    position: relative;
+}
+
+.modal-content h2 { margin-bottom: 16px; }
+.modal-content img { width: 200px; height: 200px; margin: 16px 0; }
+.modal-content p { color: #9ca3af; font-size: 14px; }
+.modal-content .hint { font-size: 12px; color: #6b7280; margin-top: 12px; }
+
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #9ca3af;
+}
+
+.close-modal:hover { color: #fff; }
+
+/* Playback Panel */
+#playback-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background: #111827;
+    border-left: 1px solid #1f2937;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.playback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.recording-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #1f2937;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.rec-info { flex: 1; }
+.rec-size { color: #6b7280; }
+.no-recordings { color: #6b7280; text-align: center; padding: 40px; }
+
+#playback-video {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 8px;
+}
+
+/* Footer */
+#dashboard-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 24px;
+    background: #111827;
+    border-top: 1px solid #1f2937;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #dashboard-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    #camera-grid {
+        grid-template-columns: 1fr;
+        padding: 12px;
+    }
+
+    #playback-panel {
+        width: 100%;
+    }
+}

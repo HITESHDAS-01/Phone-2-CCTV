@@ -1,0 +1,21 @@
+{
+  "name": "phonecctv",
+  "version": "1.0.0",
+  "description": "Phone CCTV System - Use your phone as a CCTV camera",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "node-forge": "^1.4.0",
+    "qrcode": "^1.5.4",
+    "socket.io": "^4.8.3"
+  }
+}
