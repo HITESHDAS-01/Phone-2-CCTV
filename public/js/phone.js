@@ -1,19 +1,36 @@
 // Phone Camera - WebRTC Client
 const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
 const socket = io({
-    secure: true,
-    rejectUnauthorized: isLocal,
-    transports: ['websocket', 'polling'],
+    secure: isLocal ? false : true,
+    rejectUnauthorized: false,
+    transports: ['polling', 'websocket'],
     reconnection: true,
     reconnectionAttempts: Infinity,
-    reconnectionDelay: 1000
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    timeout: 10000
 });
 
 const ICE_CONFIG = {
     iceServers: [
+        { urls: 'stun:stun.l.google.com:19302' },
         { urls: 'stun:stun1.l.google.com:19302' },
         { urls: 'stun:stun2.l.google.com:19302' },
-        { urls: 'stun:stun3.l.google.com:19302' }
+        {
+            urls: 'turn:openrelay.metered.ca:80',
+            username: 'openrelayproject',
+            credential: 'openrelayproject'
+        },
+        {
+            urls: 'turn:openrelay.metered.ca:443',
+            username: 'openrelayproject',
+            credential: 'openrelayproject'
+        },
+        {
+            urls: 'turns:openrelay.metered.ca:443',
+            username: 'openrelayproject',
+            credential: 'openrelayproject'
+        }
     ],
     iceCandidatePoolSize: 10
 };
@@ -142,6 +159,10 @@ async function handleOfferRequest(data) {
         } else if (state === 'disconnected' || state === 'failed') {
             setStatus('error', 'Connection lost');
         }
+    };
+
+    pc.oniceconnectionstatechange = () => {
+        console.log('Phone ICE connection state:', pc.iceConnectionState);
     };
 
     peerConnection = pc;
